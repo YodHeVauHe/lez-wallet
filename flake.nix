@@ -13,12 +13,16 @@
         in {
           default = pkgs.mkShell {
             packages = with pkgs; [
-              rustup cargo rustc clippy rustfmt
-              pkg-config openssl clang libclang cmake
+              rustup
+              pkg-config openssl clang llvmPackages.libclang cmake protobuf pcsclite
             ];
-            LIBCLANG_PATH = "${pkgs.libclang.lib}/lib";
+            LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
             RUSTUP_TOOLCHAIN = "1.98.1";
             RISC0_DEV_MODE = "1";
+            shellHook = ''
+              rustup toolchain install 1.98.1 --component clippy --component rustfmt
+              export PATH="$(dirname "$(rustup which rustc)"):$PATH"
+            '';
           };
         });
     };

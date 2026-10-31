@@ -27,7 +27,8 @@ cargo run -p lez-wallet-cli -- config show
 ```
 
 On Debian/Ubuntu the native packages used by upstream dependencies are `build-essential`,
-`pkg-config`, `libssl-dev`, `clang`, `libclang-dev`, and `cmake`. Keep `CARGO_TARGET_DIR`
+`pkg-config`, `libssl-dev`, `clang`, `libclang-dev`, `cmake`, `protobuf-compiler`, and
+`libpcsclite-dev`. Keep `CARGO_TARGET_DIR`
 inside this checkout (the default `target/` is ignored by git). RISC Zero guest toolchains
 are not needed to build the wallet package itself; if future workspace packages build guest
 programs, install `rzup` and follow their specific setup instructions.
