@@ -1,0 +1,48 @@
+# Rust
+/target/
+**/target/
+**/*.rs.bk
+*.pdb
+
+# Nix
+result
+result-*
+.direnv/
+.envrc.local
+
+# Qt / CMake / C++
+build/
+build-*/
+CMakeLists.txt.user*
+*.qmlc
+*.jsc
+.qmlls.ini
+*.moc
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+Makefile*
+!**/Makefile.am
+*.o
+*.so
+*.dylib
+*.dll
+*.a
+*.lgx
+
+# Logos scaffold / Basecamp local state
+.scaffold/
+.logos/
+
+# Wallet data and secrets (never commit)
+*.wallet
+wallet_storage*
+*.seed
+.env
+.env.*
+
+# Editors / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
