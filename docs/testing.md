@@ -24,3 +24,17 @@ cargo run -p lez-wallet-cli -- status --sequencer-url http://127.0.0.1:3040
 ```
 
 Upstream also documents a local Bedrock plus sequencer stack; its Docker compose build needs substantial disk and memory. In an environment without `libclang.so`, the wallet workspace cannot compile because upstream `librocksdb-sys` bindgen requires it. The standalone launch and CLI status check should be run after installing `libclang-dev`; this environment could not reach that step. The separate direct read-only testnet RPC probe is recorded in the PR verification section.
+
+## Scaffold verification observations
+
+In the implementation environment, the built CLI successfully queried the live testnet:
+`nix develop -c ./target/debug/lez-wallet status` printed `Last block ID: 71654`.
+A local sequencer was already listening on `127.0.0.1:3040`; the same CLI with
+`--sequencer-url http://127.0.0.1:3040` printed `Last block ID: 1031`. That process was
+launched from a separate SACCO scaffold, so this confirms the read-only client against a
+local RPC endpoint but does not confirm this checkout's own standalone launch.
+
+We attempted the upstream v0.3.2 standalone launch using the documented command and a
+config whose state directory was under this repository's `target/`. Its Cargo lockfile
+required a second dependency build. We stopped at 3.8 GB free on `/workspace` to stay
+within the disk limit; the standalone process from this checkout did not start.

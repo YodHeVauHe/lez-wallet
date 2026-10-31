@@ -2,7 +2,6 @@ use anyhow::Context;
 use sequencer_service_rpc::{RpcClient, SequencerClientBuilder};
 use serde::{Deserialize, Serialize};
 use url::Url;
-use wallet::WalletSequencerClient;
 
 /// Connection settings for the single sequencer selected by the user.
 #[derive(Clone, Debug, Deserialize, Serialize, PartialEq, Eq)]
@@ -39,7 +38,7 @@ impl SequencerStatusClient {
     }
 
     pub async fn last_block_id(&self) -> anyhow::Result<u64> {
-        WalletSequencerClient::get_last_block_id(&self.client)
+        RpcClient::get_last_block_id(&self.client)
             .await
             .context("query LEZ sequencer last block ID")
     }

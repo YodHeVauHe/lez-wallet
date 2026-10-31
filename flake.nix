@@ -17,6 +17,7 @@
               pkg-config openssl clang llvmPackages.libclang cmake protobuf pcsclite
             ];
             LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
+            LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
             RUSTUP_TOOLCHAIN = "1.98.1";
             RISC0_DEV_MODE = "1";
             shellHook = ''

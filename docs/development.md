@@ -11,7 +11,8 @@ the `v0.4.0-rc1` prerelease intended for the later testnet cutover.
 
 The engine depends on the upstream `wallet` package and its `sequencer_service_rpc`
 package at the same tag. The latter builds the upstream RPC transport; the engine
-uses the wallet crate's `WalletSequencerClient` trait to query the last block ID.
+uses its generated `RpcClient` trait to query the last block ID. The wallet package
+does not expose its wallet-specific transport trait in v0.3.2.
 This scaffold does not initialize wallet storage or manage keys.
 
 ## Build
